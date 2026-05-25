@@ -447,3 +447,19 @@ body.auth-body {
 @media (max-width: 480px) {
   .form-inline-grid { grid-template-columns: 1fr; }
 }
+
+/* ================================================================
+   BANDEAUX ALERTE (alertes.php)
+================================================================ */
+.alerte-bande {
+  display: flex; flex-direction: column; gap: .25rem;
+  padding: .875rem 1rem;
+  border-radius: var(--rayon); border-left: 4px solid;
+}
+.alerte-bande-titre { font-size: .88rem; font-weight: 700; }
+.alerte-bande-msg   { font-size: .8rem; opacity: .85; }
+
+.alerte-bande-success { background: var(--vert-clair);   border-color: var(--vert);   color: var(--vert); }
+.alerte-bande-warning { background: var(--orange-clair); border-color: var(--orange); color: var(--orange); }
+.alerte-bande-danger  { background: var(--rouge-clair);  border-color: var(--rouge);  color: var(--rouge); }
+.alerte-bande-info    { background: var(--info-clair);   border-color: var(--info);   color: var(--info); }

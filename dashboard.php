@@ -119,29 +119,30 @@ if ($revenu <= 0) {
   <!-- ── CARTES STATS ─────────────────────────────────────────── -->
   <div class="cards-grid">
 
-    <div class="card-stat">
-      <p class="card-label">Reste à vivre</p>
-      <p class="card-val <?= $reste >= 0 ? 'val-pos' : 'val-neg' ?>">
-        <?= number_format($reste, 2, ',', ' ') ?> €
-      </p>
-    </div>
-
-    <div class="card-stat">
-      <p class="card-label">Total Dépenses</p>
-      <p class="card-val">
-        <?= number_format($total_depenses, 2, ',', ' ') ?> €
-      </p>
-    </div>
-
-    <!-- Encart alerte dans la grille -->
-    <div class="card-stat card-alerte-wrap">
-      <p class="card-label">ALERTES SYSTÈME</p>
-      <div class="alerte-pill <?= $alerte_classe ?>">
-        <?= htmlspecialchars($alerte_texte) ?>
-      </div>
-    </div>
-
+  <div class="card-stat">
+    <p class="card-label">Reste à vivre</p>
+    <p class="card-val <?= $reste >= 0 ? 'val-pos' : 'val-neg' ?>">
+      <?= number_format($reste, 2, ',', ' ') ?> €
+    </p>
   </div>
+
+  <div class="card-stat">
+    <p class="card-label">Total Dépenses</p>
+    <p class="card-val">
+      <?= number_format($total_depenses, 2, ',', ' ') ?> €
+    </p>
+  </div>
+
+  <div class="card-stat card-alerte-wrap">
+    <p class="card-label">ALERTES SYSTÈME</p>
+    <a href="alertes.php" style="text-decoration:none">
+      <div class="alerte-pill <?= $alerte_classe ?>" style="cursor:pointer">
+        <?= htmlspecialchars($alerte_texte) ?> →
+      </div>
+    </a>
+  </div>
+
+</div>
 
 
   <!-- ── RÉPARTITION DES DÉPENSES PAR CATÉGORIE ───────────────── -->
