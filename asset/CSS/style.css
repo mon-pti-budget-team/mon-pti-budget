@@ -1,126 +1,449 @@
-/* ===== VARIABLES ===== */
+/* ================================================================
+   style.css — Mon Pti' Budget
+   Style professionnel épuré — bleu #2563eb — sans emojis
+================================================================ */
+
+/* ── VARIABLES ─────────────────────────────────────────────────── */
 :root {
-  --violet: #4f46e5;
-  --violet-hover: #4338ca;
-  --bg: #f4f5f7;
-  --white: #ffffff;
-  --text: #1e1e2e;
-  --gris: #6b7280;
-  --border: #e5e7eb;
-  --radius: 12px;
+  --bleu:        #2563eb;
+  --bleu-hover:  #1d4ed8;
+  --bleu-pale:   #eff6ff;
+  --bleu-clair:  #dbeafe;
+
+  --vert:        #16a34a;
+  --vert-clair:  #dcfce7;
+  --orange:      #d97706;
+  --orange-clair:#fef3c7;
+  --rouge:       #dc2626;
+  --rouge-clair: #fee2e2;
+  --info:        #0891b2;
+  --info-clair:  #e0f2fe;
+
+  --fond:        #f8fafc;
+  --blanc:       #ffffff;
+  --bord:        #e2e8f0;
+  --gris-texte:  #64748b;
+  --gris-label:  #94a3b8;
+  --titre:       #1e293b;
+  --corps:       #334155;
+
+  --dark-form:   #3730a3;
+
+  --police: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --rayon:  6px;
+  --rayon-l:10px;
 }
 
-/* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ── RESET ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--police); background: var(--fond); color: var(--corps); line-height: 1.5; }
+a    { color: var(--bleu); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+
+/* ================================================================
+   TOPBAR (en-tête du dashboard)
+================================================================ */
+.topbar {
+  background: var(--blanc);
+  border-bottom: 1px solid var(--bord);
+  position: sticky; top: 0; z-index: 100;
+}
+.topbar-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex; align-items: center; gap: 1.5rem;
+  height: 60px;
 }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: var(--bg);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Logo */
+.topbar-logo {
+  font-size: 1rem; font-weight: 700;
+  color: var(--bleu); letter-spacing: .06em;
+  white-space: nowrap; flex-shrink: 0;
 }
 
-/* ===== CARTE CENTRALE ===== */
-.card {
-  background: var(--white);
-  padding: 40px 36px;
-  border-radius: var(--radius);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  width: 100%;
-  max-width: 420px;
+/* Bloc revenu + barre */
+.topbar-budget {
+  display: flex; align-items: center; gap: 1.5rem;
+  margin-left: auto;
+}
+.topbar-revenu {
+  display: flex; align-items: center; gap: .6rem;
+}
+.topbar-meta {
+  font-size: .62rem; font-weight: 600;
+  color: var(--gris-label); letter-spacing: .08em;
+  text-transform: uppercase; white-space: nowrap;
+}
+.topbar-chiffre {
+  font-size: 1.05rem; font-weight: 700; color: var(--titre);
+}
+.topbar-btn-modifier {
+  font-size: .68rem; font-weight: 700;
+  background: var(--bleu); color: #fff !important;
+  padding: .28rem .7rem; border-radius: var(--rayon);
+  letter-spacing: .05em; transition: background .15s;
+}
+.topbar-btn-modifier:hover { background: var(--bleu-hover); text-decoration: none; }
+
+/* Barre budget */
+.topbar-barre-bloc {
+  display: flex; flex-direction: column; gap: .2rem; min-width: 140px;
+}
+.topbar-barre-fond {
+  height: 7px; background: var(--bord);
+  border-radius: 99px; overflow: hidden;
+}
+.topbar-barre-remplie {
+  height: 100%; border-radius: 99px;
+  transition: width .4s ease;
 }
 
-/* ===== LOGO ===== */
-.logo {
-  font-size: 1.2rem;
-  color: var(--violet);
-  margin-bottom: 20px;
-  text-align: center;
+/* Nom + déconnexion */
+.topbar-user {
+  display: flex; align-items: center; gap: .75rem; flex-shrink: 0;
 }
-
-/* ===== TITRES ===== */
-h2 {
-  font-size: 1.6rem;
-  color: var(--text);
-  margin-bottom: 6px;
-  text-align: center;
+.topbar-nom {
+  font-size: .82rem; color: var(--gris-texte);
 }
-
-.subtitle {
-  color: var(--gris);
-  font-size: 0.9rem;
-  text-align: center;
-  margin-bottom: 28px;
+.topbar-logout {
+  font-size: .78rem; font-weight: 500;
+  border: 1px solid var(--bord); border-radius: var(--rayon);
+  padding: .3rem .75rem; color: var(--gris-texte);
+  transition: border-color .15s, color .15s;
 }
-
-/* ===== CHAMPS ===== */
-.field {
-  margin-bottom: 18px;
-}
-
-label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-
-input {
-  width: 100%;
-  padding: 10px 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 0.95rem;
-  color: var(--text);
-  background: var(--bg);
-  transition: border 0.2s;
-}
-
-input:focus {
-  outline: none;
-  border-color: var(--violet);
-  background: var(--white);
-}
-
-/* ===== BOUTON ===== */
-.btn {
-  width: 100%;
-  padding: 12px;
-  background-color: var(--violet);
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 8px;
-  transition: background 0.2s;
-}
-
-.btn:hover {
-  background-color: var(--violet-hover);
-}
-
-/* ===== LIENS ===== */
-.links {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.links a {
-  font-size: 0.85rem;
-  color: var(--violet);
+.topbar-logout:hover {
+  border-color: var(--rouge); color: var(--rouge);
   text-decoration: none;
 }
 
-.links a:hover {
-  text-decoration: underline;
+
+/* ================================================================
+   LAYOUT PAGE
+================================================================ */
+.page {
+  max-width: 1100px; margin: 0 auto;
+  padding: 1.75rem 1.5rem;
+  display: flex; flex-direction: column; gap: 1.25rem;
+}
+
+
+/* ================================================================
+   CARTES STATS
+================================================================ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.card-stat {
+  background: var(--blanc);
+  border: 1px solid var(--bord);
+  border-radius: var(--rayon-l);
+  padding: 1.25rem 1.5rem;
+}
+.card-label {
+  font-size: .65rem; font-weight: 600;
+  color: var(--gris-label); letter-spacing: .08em;
+  text-transform: uppercase; margin-bottom: .45rem;
+}
+.card-val {
+  font-size: 1.8rem; font-weight: 700; color: var(--titre);
+}
+.val-pos { color: var(--vert); }
+.val-neg { color: var(--rouge); }
+
+/* Carte avec alerte intégrée */
+.card-alerte-wrap { display: flex; flex-direction: column; gap: .5rem; }
+.alerte-pill {
+  font-size: .78rem; padding: .5rem .75rem;
+  border-radius: var(--rayon); border-left: 3px solid;
+}
+.alerte-success { background: var(--vert-clair);   color: var(--vert);   border-color: var(--vert); }
+.alerte-warning { background: var(--orange-clair); color: var(--orange); border-color: var(--orange); }
+.alerte-danger  { background: var(--rouge-clair);  color: var(--rouge);  border-color: var(--rouge); }
+.alerte-info    { background: var(--info-clair);   color: var(--info);   border-color: var(--info); }
+
+
+/* ================================================================
+   BLOCS (sections blanches)
+================================================================ */
+.bloc {
+  background: var(--blanc);
+  border: 1px solid var(--bord);
+  border-radius: var(--rayon-l);
+  padding: 1.5rem;
+}
+.bloc-titre {
+  font-size: .78rem; font-weight: 700;
+  color: var(--titre); letter-spacing: .07em;
+  text-transform: uppercase; margin-bottom: 1rem;
+}
+.bloc-header {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 1rem;
+}
+.bloc-count {
+  font-size: .75rem; color: var(--gris-texte);
+}
+
+/* Bloc sombre (formulaire) */
+.bloc-dark { background: var(--dark-form); border-color: transparent; }
+.bloc-titre-white {
+  font-size: .82rem; font-weight: 700;
+  color: #fff; letter-spacing: .07em;
+  text-transform: uppercase; margin-bottom: .4rem;
+}
+.bloc-sous-titre-white {
+  font-size: .78rem; color: rgba(255,255,255,.65);
+  margin-bottom: 1.25rem;
+}
+
+
+/* ================================================================
+   RÉPARTITION PAR CATÉGORIE
+================================================================ */
+.repart-ligne {
+  display: flex; align-items: center; gap: .875rem;
+  margin-bottom: .65rem;
+}
+.repart-cat {
+  font-size: .82rem; color: var(--titre);
+  min-width: 110px; flex-shrink: 0;
+}
+.repart-barre-fond {
+  flex: 1; height: 6px;
+  background: var(--bord); border-radius: 99px; overflow: hidden;
+}
+.repart-barre-remplie {
+  height: 100%; background: var(--bleu);
+  border-radius: 99px; transition: width .4s;
+}
+.repart-montant {
+  font-size: .76rem; color: var(--gris-texte);
+  text-align: right; min-width: 130px; flex-shrink: 0;
+}
+
+
+/* ================================================================
+   FORMULAIRE INLINE (dans le bloc sombre)
+================================================================ */
+.form-inline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.form-champ { display: flex; flex-direction: column; }
+.form-label-white {
+  font-size: .62rem; font-weight: 600;
+  color: rgba(255,255,255,.6); letter-spacing: .08em;
+  text-transform: uppercase; margin-bottom: .35rem;
+}
+.form-input {
+  padding: .55rem .7rem;
+  font-size: .875rem; font-family: var(--police);
+  color: var(--titre); background: var(--blanc);
+  border: 1px solid var(--bord); border-radius: var(--rayon);
+  outline: none; transition: border-color .15s;
+  width: 100%;
+}
+.form-input:focus {
+  border-color: var(--bleu);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+.btn-soumettre {
+  display: block; width: 100%;
+  padding: .7rem;
+  font-size: .82rem; font-weight: 700;
+  font-family: var(--police); letter-spacing: .06em;
+  background: var(--blanc); color: var(--dark-form);
+  border: none; border-radius: var(--rayon);
+  cursor: pointer; transition: opacity .15s;
+}
+.btn-soumettre:hover { opacity: .9; }
+
+
+/* ================================================================
+   TABLEAU HISTORIQUE
+================================================================ */
+.table-hist {
+  width: 100%; border-collapse: collapse;
+  font-size: .85rem;
+}
+.table-hist thead tr { border-bottom: 1px solid var(--bord); }
+.table-hist th {
+  padding: .5rem .75rem;
+  font-size: .62rem; font-weight: 700;
+  color: var(--gris-label); letter-spacing: .08em;
+  text-transform: uppercase; text-align: left;
+}
+.table-hist td {
+  padding: .7rem .75rem;
+  border-bottom: 1px solid var(--bord);
+  color: var(--titre); vertical-align: middle;
+}
+.table-hist tr:last-child td { border-bottom: none; }
+.table-hist tbody tr:hover td { background: var(--bleu-pale); }
+
+.td-montant { font-weight: 700; }
+
+/* Badges type (US8) */
+.badge {
+  display: inline-block; padding: .18rem .6rem;
+  font-size: .7rem; font-weight: 700;
+  border-radius: 99px; letter-spacing: .03em;
+}
+.badge-perso { background: var(--vert-clair); color: var(--vert); }
+.badge-pro   { background: var(--bleu-clair); color: var(--bleu); }
+
+/* Lien supprimer */
+.lien-suppr {
+  font-size: .75rem; color: var(--gris-texte);
+  padding: .18rem .5rem; border-radius: var(--rayon);
+  transition: color .15s, background .15s;
+}
+.lien-suppr:hover {
+  color: var(--rouge); background: var(--rouge-clair);
+  text-decoration: none;
+}
+
+/* État vide */
+.vide {
+  text-align: center; padding: 2.5rem 1rem;
+  color: var(--gris-texte); font-size: .875rem;
+}
+.vide a { display: block; margin-top: .5rem; color: var(--bleu); }
+
+
+/* ================================================================
+   PAGES AUTH (login / register)
+   — conserve la compatibilité avec ton style.css actuel
+================================================================ */
+body.auth-body {
+  min-height: 100vh; display: flex;
+  align-items: center; justify-content: center; padding: 2rem;
+}
+
+/* Ancienne variable utilisée par login.php / register.php */
+:root {
+  --violet:       #2563eb;   /* remplace l'ancien violet par le bleu */
+  --violet-hover: #1d4ed8;
+  --white:        #ffffff;
+  --bg:           #f8fafc;
+  --border:       #e2e8f0;
+  --text:         #1e293b;
+  --gris:         #64748b;
+  --radius:       10px;
+}
+
+/* Carte centrée (login, register, depenses) */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 2.25rem;
+  width: 100%; max-width: 420px;
+  margin: 3rem auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
+
+.logo {
+  font-size: 1rem; font-weight: 700;
+  color: var(--bleu); letter-spacing: .06em;
+  text-align: center; display: block; margin-bottom: .25rem;
+}
+
+.card h2 {
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--titre); text-align: center; margin-bottom: .3rem;
+}
+
+.subtitle {
+  font-size: .82rem; color: var(--gris-texte);
+  text-align: center; margin-bottom: 1.5rem;
+}
+
+/* Champs formulaire (pages card) */
+.field { margin-bottom: 1rem; }
+.field label {
+  display: block; font-size: .68rem; font-weight: 600;
+  color: var(--gris-label); letter-spacing: .07em;
+  text-transform: uppercase; margin-bottom: .35rem;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%; padding: .6rem .75rem;
+  font-size: .9rem; font-family: var(--police);
+  color: var(--titre); background: var(--fond);
+  border: 1px solid var(--bord); border-radius: var(--rayon);
+  outline: none; transition: border-color .15s;
+  appearance: none;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--bleu);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.1);
+  background: var(--blanc);
+}
+
+/* Bouton principal (pages card) */
+.btn {
+  display: block; width: 100%;
+  padding: .7rem;
+  margin-top: .5rem;
+  font-size: .87rem; font-weight: 700;
+  font-family: var(--police); letter-spacing: .05em;
+  text-transform: uppercase;
+  background: var(--bleu); color: #fff;
+  border: none; border-radius: var(--rayon);
+  cursor: pointer; transition: background .15s;
+}
+.btn:hover { background: var(--bleu-hover); }
+
+/* Liens en bas des pages card */
+.links {
+  display: flex; justify-content: center;
+  gap: 1.25rem; margin-top: 1.25rem;
+}
+.links a {
+  font-size: .8rem; color: var(--gris-texte);
+  transition: color .15s;
+}
+.links a:hover { color: var(--bleu); text-decoration: none; }
+
+/* Messages alert (card pages) */
+.alert-success {
+  background: var(--vert-clair); color: var(--vert);
+  border: 1px solid #bbf7d0;
+  padding: .75rem 1rem; border-radius: var(--rayon);
+  margin-bottom: 1rem; font-size: .85rem; text-align: center;
+}
+.alert-error {
+  background: var(--rouge-clair); color: var(--rouge);
+  border: 1px solid #fca5a5;
+  padding: .75rem 1rem; border-radius: var(--rayon);
+  margin-bottom: 1rem; font-size: .85rem; text-align: center;
+}
+
+
+/* ================================================================
+   RESPONSIVE
+================================================================ */
+@media (max-width: 768px) {
+  .topbar-inner  { flex-wrap: wrap; height: auto; padding: .75rem 1rem; gap: .6rem; }
+  .topbar-budget { order: 3; width: 100%; margin-left: 0; }
+  .topbar-user   { order: 2; }
+  .cards-grid    { grid-template-columns: 1fr; }
+  .form-inline-grid { grid-template-columns: 1fr 1fr; }
+  .repart-ligne  { flex-wrap: wrap; }
+  .table-hist th:nth-child(4),
+  .table-hist td:nth-child(4) { display: none; }
+}
+@media (max-width: 480px) {
+  .form-inline-grid { grid-template-columns: 1fr; }
 }
