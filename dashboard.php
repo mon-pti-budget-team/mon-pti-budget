@@ -16,6 +16,18 @@ $depenses       = [];
 $total_depenses = 0;
 $revenu         = 0;
 
+// Suppression d'une dépense
+if (isset($_GET['supprimer']) && is_numeric($_GET['supprimer'])) {
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+        $id  = intval($_GET['supprimer']);
+        $stmt = $pdo->prepare("DELETE FROM depenses WHERE id = ? AND user_id = ?");
+        $stmt->execute([$id, $_SESSION['user_id']]);
+    } catch (PDOException $e) {}
+    header('Location: dashboard.php');
+    exit;
+}
+
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
